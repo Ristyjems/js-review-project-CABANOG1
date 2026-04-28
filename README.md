@@ -1,3 +1,3 @@
-Lab 2 Activity: Full-Stack Web App: Build-From-Scratch Activity Guide
+Lab 5 Activity: TypeScript CRUD API with Node.js, Express & MySQL
 (Risty James Cabanog)
 

@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+    "_helpers/*": ["src/_helpers/*"],
+    "_middleware/*": ["src/_middleware/*"],
+    "users/*": ["src/users/*"],
+    "auth/*": ["src/auth/*"],
+    "admin/*": ["src/admin/*"]
+  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

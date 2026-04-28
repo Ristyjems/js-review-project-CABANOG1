@@ -1,0 +1,186 @@
+openapi: 3.0.0
+info:
+  title: Node MySQL API
+  description: User CRUD API with TypeScript + Sequelize
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:4000
+    description: Local development server
+
+paths:
+  /accounts/register:
+    post:
+      summary: Register a new account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                confirmPassword:
+                  type: string
+                acceptTerms:
+                  type: boolean
+      responses:
+        '200':
+          description: Registration successful
+
+  /accounts/authenticate:
+    post:
+      summary: Authenticate account and get JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Authentication successful
+
+  /accounts/verify-email:
+    post:
+      summary: Verify email address
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      responses:
+        '200':
+          description: Verification successful
+
+  /accounts/forgot-password:
+    post:
+      summary: Submit email for password reset
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Password reset email sent
+
+  /accounts/reset-password:
+    post:
+      summary: Reset password using token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                password:
+                  type: string
+                confirmPassword:
+                  type: string
+      responses:
+        '200':
+          description: Password reset successful
+
+  /accounts/refresh-token:
+    post:
+      summary: Get a new JWT token using refresh token
+      responses:
+        '200':
+          description: Token refreshed successfully
+
+  /accounts/revoke-token:
+    post:
+      summary: Revoke a refresh token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      responses:
+        '200':
+          description: Token revoked
+
+  /accounts:
+    get:
+      summary: Get all accounts (Admin only)
+      responses:
+        '200':
+          description: List of all accounts
+
+  /accounts/{id}:
+    get:
+      summary: Get account by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Account details
+    put:
+      summary: Update account
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Account updated
+    delete:
+      summary: Delete account
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Account deleted
